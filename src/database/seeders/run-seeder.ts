@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import config from '../../config/config';
-import { User } from '../../modules/user';
+import { logger } from 'src/utils';
+import config from '../../config';
 import usersDataSeed from './user.seed';
-import { logger } from '../../modules/logger';
+import User from '@/modules/user/user.model';
 
 const runSeeds = async () => {
   mongoose

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import app from './app';
-import config from './src/config/config';
-import logger from './src/modules/logger/logger';
+import config from './src/config';
+import logger from './src/utils/logger';
 // import runSeeds from './database/seeders/run-seeder';
 
 let server: any;

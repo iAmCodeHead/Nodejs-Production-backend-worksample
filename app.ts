@@ -3,11 +3,11 @@ import helmet from 'helmet';
 import ExpressMongoSanitize from 'express-mongo-sanitize';
 import cors from 'cors';
 import httpStatus from 'http-status';
-import config from './src/config/config';
-import { morgan } from './src/modules/logger';
-import { ApiError, errorConverter, errorHandler } from './src/modules/errors';
+import config from './src/config';
+import { ApiError, errorConverter, errorHandler } from './src/utils/error-utils';
 import v1Routes from './src/routes/v1';
-import rateLimiter from './src/modules/utils/rateLimiter';
+import { rateLimiter } from './src/utils';
+import { morgan } from './src/utils';
 
 const app: Express = express();
 

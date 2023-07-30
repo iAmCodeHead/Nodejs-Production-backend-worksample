@@ -1,15 +1,15 @@
 import httpStatus from 'http-status';
+import { ApiError } from '../../utils/error-utils';
 import User from './user.model';
-import ApiError from '../errors/ApiError';
-import { IOptions, QueryResult } from '../paginate/paginate';
-import { NewCreatedUser, IUser } from './user.interfaces';
+import { IOptions, QueryResult } from '../../utils/db-utils/pagination';
+import { IUser } from './user.interfaces';
 
 /**
  * Create a user
- * @param {NewCreatedUser} userBody
+ * @param {IUser} userBody
  * @returns {Promise<IUser>}
  */
-export const createUser = async (userBody: NewCreatedUser): Promise<IUser> => {
+export const createUser = async (userBody: IUser): Promise<IUser> => {
   if (await User.isEmailTaken(userBody.email)) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }

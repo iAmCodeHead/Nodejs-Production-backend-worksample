@@ -4,9 +4,9 @@ import httpMocks from 'node-mocks-http';
 import { jest } from '@jest/globals';
 import winston from 'winston';
 import { errorConverter, errorHandler } from './error';
-import ApiError from './ApiError';
-import config from '../../config/config';
-import logger from '../logger/logger';
+import ApiError from './api-error';
+import config from '../../config';
+import logger from '../logger';
 
 describe('Error middlewares', () => {
   describe('Error converter', () => {

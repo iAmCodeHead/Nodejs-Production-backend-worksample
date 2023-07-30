@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
-import toJSON from '../toJSON/toJSON';
-import paginate from '../paginate/paginate';
+import httpStatus from 'http-status';
+import toJSON from '../../utils/db-utils/to-json/to-json';
+import paginate from '../../utils/db-utils/pagination';
 import { IUserDoc, IUserModel } from './user.interfaces';
+import ApiError from '../../utils/error-utils/api-error';
 
 const userSchema = new mongoose.Schema<IUserDoc, IUserModel>(
   {
@@ -24,7 +26,7 @@ const userSchema = new mongoose.Schema<IUserDoc, IUserModel>(
       lowercase: true,
       validate(value: string) {
         if (!validator.isEmail(value)) {
-          throw new Error('Invalid email');
+          throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
         }
       },
     },

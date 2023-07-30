@@ -2,11 +2,12 @@
 import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
-import config from '../../config/config';
-import { logger } from '../logger';
-import ApiError from './ApiError';
+import config from '../../config';
+import logger from '../logger';
+import ApiError from './api-error';
 
 export const errorConverter = (err: any, _req: Request, _res: Response, next: NextFunction) => {
+  logger.info('na here we dey for errors');
   let error = err;
   if (!(error instanceof ApiError)) {
     const statusCode =

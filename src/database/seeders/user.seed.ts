@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { NewCreatedUser } from '@/modules/user/user.interfaces';
+import { IUser } from '@/modules/user/user.interfaces';
 
-const usersDataSeed: NewCreatedUser[] = [
+const usersDataSeed: IUser[] = [
   {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),

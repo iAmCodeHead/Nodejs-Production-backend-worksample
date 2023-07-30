@@ -2,20 +2,20 @@ import request from 'supertest';
 import { faker } from '@faker-js/faker';
 import httpStatus from 'http-status';
 import app from '../../../app';
-import setupTestDB from '../jest/setupTestDB';
+import setupTestDB from '../../utils/test-utils/setup-test-db';
 import User from './user.model';
-import { NewCreatedUser } from './user.interfaces';
+import { IUser } from './user.interfaces';
 
 setupTestDB();
 
-const userOne: NewCreatedUser = {
+const userOne: IUser = {
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   email: `a${faker.internet.email().toLowerCase()}`,
   age: faker.datatype.number({ min: 15, max: 100 }),
 };
 
-const userTwo: NewCreatedUser = {
+const userTwo: IUser = {
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   email: `b${faker.internet.email().toLowerCase()}`,
@@ -28,7 +28,7 @@ const insertUsers = async (users: Record<string, any>[]) => {
 
 describe('User routes', () => {
   describe('POST /v1/users', () => {
-    let newUser: NewCreatedUser;
+    let newUser: IUser;
 
     beforeEach(() => {
       newUser = {

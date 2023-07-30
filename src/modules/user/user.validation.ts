@@ -1,7 +1,7 @@
 import Joi from 'joi';
-import { NewCreatedUser } from './user.interfaces';
+import { IUser } from './user.interfaces';
 
-const createUserBody: Record<keyof NewCreatedUser, any> = {
+const createUserBody: Record<keyof IUser, any> = {
   email: Joi.string().required().email(),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),

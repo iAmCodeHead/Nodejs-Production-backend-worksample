@@ -53,7 +53,7 @@ Here is a high level overview of the project structure
 │   ├── config                        # Environment variables and other configurations
 │   ├── modules                       # Modules such as models, controllers, services 
         ├── user                        # User module contains the user controller, service, interface, test, etc
-        ├── utils                       # Contains utility functions such as catchAsync
+        ├── utils                       # Contains utility functions
 │   └── routes                        # Routes
 ├── app.ts                          # Express App
 ├── index.ts                        # App entry file
@@ -199,15 +199,15 @@ List of available routes:
 
 The app has a centralized error handling mechanism.
 
-Controllers should try to catch the errors and forward them to the error handling middleware (by calling `next(error)`). For convenience, you can also wrap the controller inside the catchAsync utility wrapper, which forwards the error.
+Controllers should try to catch the errors and forward them to the error handling middleware (by calling `next(error)`).
 
 ```typescript
-import catchAsync from '../utils/catchAsync';
-
-const controller = catchAsync(async (req, res) => {
-  // this error will be forwarded to the error handling middleware
-  throw new Error('Something wrong happened');
-});
+  try {
+    const user = await userService.createUser(req.body);
+    res.status(httpStatus.CREATED).send(user);
+  } catch (error) {
+    next(error);
+  }
 ```
 
 The error handling middleware sends an error response, which has the following format:
@@ -221,7 +221,7 @@ The error handling middleware sends an error response, which has the following f
 
 When running in development mode, the error response also contains the error stack.
 
-The app has a utility ApiError class to which you can attach a response code and a message, and then throw it from anywhere (catchAsync will catch it).
+The app has a utility ApiError class to which you can attach a response code and a message, and then throw it.
 
 For example, if you are trying to get a user from the DB who is not found, and you want to send a 404 error, the code should look something like:
 

@@ -1,15 +1,11 @@
-import config from '../../config/config';
+import config from '../config';
 
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
     title: 'Perspective Work Sample API documentation',
     version: '0.0.1',
-    description: 'This is a demonstration of node express mongoose project in typescript',
-    license: {
-      name: 'MIT',
-      url: 'https://github.com/saisilinus/node-express-mongoose-typescript-boilerplate.git',
-    },
+    description: 'This is a demonstration of node/typescript work sample',
   },
   servers: [
     {
