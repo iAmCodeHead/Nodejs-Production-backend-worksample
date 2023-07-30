@@ -11,14 +11,14 @@ router
 
 export default router;
 
-/**
+/*
  * @swagger
  * tags:
  *   name: Users
  *   description: User storage and retrieval
  */
 
-/**
+/*
  * @swagger
  * /users:
  *   post:
@@ -39,7 +39,7 @@ export default router;
  *             properties:
  *               firstName:
  *                 type: string
- *  *            lastName:
+ *               lastName:
  *                 type: string
  *               email:
  *                 type: string

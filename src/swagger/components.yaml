@@ -8,11 +8,12 @@ components:
         email:
           type: string
           format: email
-        name:
+        firstName:
           type: string
-        role:
+        lastName:
           type: string
-          enum: [user, admin]
+        age:
+          type: number
       example:
         id: 5ebac534954b54139806c112
         email: fake@example.com
