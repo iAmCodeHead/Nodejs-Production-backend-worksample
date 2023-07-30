@@ -2,15 +2,14 @@ import mongoose from 'mongoose';
 import app from './app';
 import config from './src/config';
 import logger from './src/utils/logger';
-// import runSeeds from './database/seeders/run-seeder';
+import runSeeds from './src/database/seeders/run-seeder';
 
 let server: any;
 mongoose
   .connect(config.mongoose.url)
   .then(() => {
     logger.info('Connected to MongoDB');
-
-    // runSeeds();
+    if (config.env == 'development') runSeeds();
   })
   .then(() => {
     server = app.listen(config.port, () => {

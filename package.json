@@ -19,8 +19,6 @@
     "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --watchAll",
     "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --coverage",
     "coverage:coveralls": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -i --coverage --coverageReporters=lcov",
-    "seed:create": "ts-node -r tsconfig-paths/register ./src/database/seeders/run-seeder.js",
-    "seed:run": "tsc --build && cross-env NODE_ENV=development --es-module-specifier-resolution=node dist/src/database/seeders/run-seeder.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check **/*.ts",
