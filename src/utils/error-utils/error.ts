@@ -7,9 +7,20 @@ import logger from '../logger';
 import ApiError from './api-error';
 
 export const errorConverter = (err: any, _req: Request, _res: Response, next: NextFunction) => {
-  logger.info('na here we dey for errors');
   let error = err;
+
   if (!(error instanceof ApiError)) {
+    // mongoose dup key error
+    if (error.code && error.code.toString() === '11000') {
+      const statusCode = httpStatus.BAD_REQUEST;
+      const regex = /dup key: {\s*([^:]+)\s*:\s*"[^"]+"\s*}/;
+      const match = error.message.match(regex);
+      const duplicatedFieldKey = match ? match[1] : null;
+      const message: string = `${duplicatedFieldKey} already exists`;
+      error = new ApiError(statusCode, message, false, err.stack);
+      next(error);
+    }
+
     const statusCode =
       error.statusCode || error instanceof mongoose.Error ? httpStatus.BAD_REQUEST : httpStatus.INTERNAL_SERVER_ERROR;
     const message: string = error.message || `${httpStatus[statusCode]}`;

@@ -106,43 +106,34 @@ describe('Error middlewares', () => {
     beforeEach(() => {
       jest.spyOn(logger, 'error').mockImplementation(() => winston.createLogger({}));
     });
-
     test('should send proper error response and put the error message in res.locals', () => {
       const error = new ApiError(httpStatus.BAD_REQUEST, 'Any error');
       const res = httpMocks.createResponse();
       const next = jest.fn();
       const sendSpy = jest.spyOn(res, 'send');
-
       errorHandler(error, httpMocks.createRequest(), res, next);
-
       expect(sendSpy).toHaveBeenCalledWith(expect.objectContaining({ code: error.statusCode, message: error.message }));
       expect(res.locals['errorMessage']).toBe(error.message);
     });
-
     test('should put the error stack in the response if in development mode', () => {
       config.env = 'development';
       const error = new ApiError(httpStatus.BAD_REQUEST, 'Any error');
       const res = httpMocks.createResponse();
       const next = jest.fn();
       const sendSpy = jest.spyOn(res, 'send');
-
       errorHandler(error, httpMocks.createRequest(), res, next);
-
       expect(sendSpy).toHaveBeenCalledWith(
         expect.objectContaining({ code: error.statusCode, message: error.message, stack: error.stack })
       );
       config.env = process.env['NODE_ENV'] as typeof config.env;
     });
-
     test('should send internal server error status and message if in production mode and error is not operational', () => {
       config.env = 'production';
       const error = new ApiError(httpStatus.BAD_REQUEST, 'Any error', false);
       const res = httpMocks.createResponse();
       const next = jest.fn();
       const sendSpy = jest.spyOn(res, 'send');
-
       errorHandler(error, httpMocks.createRequest(), res, next);
-
       expect(sendSpy).toHaveBeenCalledWith(
         expect.objectContaining({
           code: httpStatus.INTERNAL_SERVER_ERROR,
@@ -152,16 +143,13 @@ describe('Error middlewares', () => {
       expect(res.locals['errorMessage']).toBe(error.message);
       config.env = process.env['NODE_ENV'] as typeof config.env;
     });
-
     test('should preserve original error status and message if in production mode and error is operational', () => {
       config.env = 'production';
       const error = new ApiError(httpStatus.BAD_REQUEST, 'Any error');
       const res = httpMocks.createResponse();
       const next = jest.fn();
       const sendSpy = jest.spyOn(res, 'send');
-
       errorHandler(error, httpMocks.createRequest(), res, next);
-
       expect(sendSpy).toHaveBeenCalledWith(
         expect.objectContaining({
           code: error.statusCode,
