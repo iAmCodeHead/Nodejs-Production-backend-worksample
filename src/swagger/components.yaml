@@ -3,8 +3,6 @@ components:
     User:
       type: object
       properties:
-        id:
-          type: string
         email:
           type: string
           format: email
@@ -15,7 +13,6 @@ components:
         age:
           type: number
       example:
-        id: 5ebac534954b54139806c112
         email: fake@example.com
         firstName: Samson
         lastName: Akande

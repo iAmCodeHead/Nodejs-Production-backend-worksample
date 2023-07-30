@@ -1,24 +1,11 @@
-import express, { Router } from 'express';
-import { userController, userValidation } from '../../modules/user';
-import validate from '../../middleware/validate.middleware';
-
-const router: Router = express.Router();
-
-router
-  .route('/')
-  .post(validate(userValidation.createUser), userController.createUser)
-  .get(validate(userValidation.getUsers), userController.getUsers);
-
-export default router;
-
-/*
+/**
  * @swagger
  * tags:
  *   name: Users
  *   description: User storage and retrieval
  */
 
-/*
+/**
  * @swagger
  * /users:
  *   post:
@@ -120,8 +107,17 @@ export default router;
  *                 totalResults:
  *                   type: integer
  *                   example: 1
- *       "401":
- *         $ref: '#/components/responses/Unauthorized'
- *       "403":
- *         $ref: '#/components/responses/Forbidden'
  */
+
+import express, { Router } from 'express';
+import { userController, userValidation } from '../../modules/user';
+import validate from '../../middleware/validate.middleware';
+
+const router: Router = express.Router();
+
+router
+  .route('/')
+  .post(validate(userValidation.createUser), userController.createUser)
+  .get(validate(userValidation.getUsers), userController.getUsers);
+
+export default router;
