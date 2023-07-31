@@ -83,6 +83,8 @@ Run the application
 ```bash
 docker compose up -d
 ```
+You application should now be up and running on `http://localhost:3000/v1`\
+Check out [API Documentation](#api-documentation) for available endpoints.
 
 ## Manual Installation
 
