@@ -53,7 +53,7 @@ Here is a high level overview of the project structure
 │   ├── config                        # Environment variables and other configurations
 │   ├── modules                       # Modules such as models, controllers, services 
         ├── user                        # User module contains the user controller, service, interface, test, etc
-        ├── utils                       # Contains utility functions
+    ├── utils                       # Contains utility functions
 │   └── routes                        # Routes
 ├── app.ts                          # Express App
 ├── index.ts                        # App entry file
@@ -65,6 +65,13 @@ Here is a high level overview of the project structure
 
 To run the project quickly on your local (please ensure you have docker installed), simply run:
 
+Clone the repo:
+
+```bash
+git clone --depth 1 https://github.com/iAmCodeHead/backend-worksample project-name
+cd project-name
+```
+Run the application
 ```bash
 yarn docker:dev
 ```
@@ -98,12 +105,6 @@ Running locally:
 
 ```bash
 yarn dev
-```
-
-Running in production:
-
-```bash
-yarn start
 ```
 
 Compiling to JS from TS
