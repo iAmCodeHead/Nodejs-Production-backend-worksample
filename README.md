@@ -71,9 +71,17 @@ Clone the repo:
 git clone --depth 1 https://github.com/iAmCodeHead/backend-worksample project-name
 cd project-name
 ```
+Set the environment variables:
+
+```bash
+cp .env.example .env
+
+# open .env and modify the environment variables (if needed)
+```
+
 Run the application
 ```bash
-yarn docker:dev
+docker compose up -d
 ```
 
 ## Manual Installation
