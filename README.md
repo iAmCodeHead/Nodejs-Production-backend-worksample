@@ -202,7 +202,9 @@ List of available routes:
 
 **User routes**:\
 `POST /v1/users` - create a user\
-`GET /v1/users` - get all users
+`GET /v1/users` - get all users\
+`GET /v1/users?sortBy=created:desc` - get all users in descending order by ```created``` field\
+`GET /v1/users?sortBy=created:asc` - get all users in ascending order by ```created``` field
 
 ## Error Handling
 
