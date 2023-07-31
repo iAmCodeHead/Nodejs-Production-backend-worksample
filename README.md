@@ -74,7 +74,7 @@ yarn docker:dev
 Clone the repo:
 
 ```bash
-git clone --depth 1 repo name project-name
+git clone --depth 1 https://github.com/iAmCodeHead/backend-worksample project-name
 cd project-name
 ```
 
